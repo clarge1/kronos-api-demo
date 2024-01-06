@@ -7,6 +7,7 @@ import os
 import sys
 import json
 import logging
+from discord_helper import foo
 
 # Hack to use dependencies from lib directory
 BASE_PATH = os.path.dirname(__file__)
@@ -40,11 +41,13 @@ def lambda_handler(event, context):
     It logs the request and an execution context. Then it returns body of the request.
     '''
     
-    LOGGER.info(f'Context: {vars(context)}, Request: {event}')
+    LOGGER.info(f'Context: {context}, Request: {event}')
+
+    print(foo())
 
     return response(status=200, body='Hello World!')
 
 
 if __name__ == '__main__':
     # Do nothing if executed as a script
-    pass
+    lambda_handler({'lambda':'land'},{'hello':'world'})
