@@ -7,7 +7,7 @@ import os
 import sys
 import json
 import logging
-from discord_helper import foo
+from discord_helper import send_message
 
 # Hack to use dependencies from lib directory
 BASE_PATH = os.path.dirname(__file__)
@@ -43,7 +43,7 @@ def lambda_handler(event, context):
     
     LOGGER.info(f'Context: {context}, Request: {event}')
 
-    print(foo())
+    send_message('Oogie Boogie blunderball')
 
     return response(status=200, body='Hello World!')
 

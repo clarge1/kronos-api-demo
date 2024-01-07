@@ -32,8 +32,10 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
-hello-world.zip
+kronos.zip
+layer.zip
 response.json
 
 
 demo-env/
+layer/
