@@ -38,7 +38,7 @@ def lambda_handler(event, context):
     LOGGER.info(f'Context: {context}, Request: {event}')
 
     unlock_time_message = time_helper.get_next_unlock_time()
-    discord_helper.send_message(unlock_time_message)
+    discord_helper.send_message(f'<@444271672799789067>\n{unlock_time_message}')
 
     return response(status=200, body=unlock_time_message)
 
