@@ -1,13 +1,9 @@
-#!/usr/bin/env python
-'''
-Echo service as a Lambda function
-'''
-
 import os
 import sys
 import json
 import logging
-from discord_helper import send_message
+import time_helper
+import discord_helper
 
 # Hack to use dependencies from lib directory
 BASE_PATH = os.path.dirname(__file__)
@@ -20,9 +16,7 @@ logging.getLogger().setLevel(logging.INFO)
 
 
 def response(status=200, headers=None, body=''):
-    '''
-    http://www.awslessons.com/2017/lambda-api-gateway-internal-server-error/
-    '''
+
     if not body:
         return {'statusCode': status}
 
@@ -43,9 +37,10 @@ def lambda_handler(event, context):
     
     LOGGER.info(f'Context: {context}, Request: {event}')
 
-    send_message('Oogie Boogie blunderball')
+    unlock_time_message = time_helper.get_next_unlock_time()
+    discord_helper.send_message(unlock_time_message)
 
-    return response(status=200, body='Hello World!')
+    return response(status=200, body=unlock_time_message)
 
 
 if __name__ == '__main__':
